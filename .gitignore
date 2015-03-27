@@ -1,2 +1,8 @@
 *.zip
 !/*/**/*.zip #Allow any zip files in subfolders
+/bin
+.gradle
+/build
+/src/main/java/com/example
+build.gradle
+.gitignore
