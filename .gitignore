@@ -1,0 +1,2 @@
+*.zip
+!/*/**/*.zip #Allow any zip files in subfolders
