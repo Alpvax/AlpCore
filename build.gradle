@@ -29,10 +29,15 @@ minecraft {
     mappings = "snapshot_20141130"
 }
 
-version = version ?: "0.1"
-modid = modid ?: project.projectDir.name.toLowerCase()
+if(!project.hasProperty("version")) {
+    version = "0.1"
+}
+if(!project.hasProperty("modid")) {
+    modid = project.projectDir.name
+}
+archivesBaseName = "${modid}-${project.minecraft.version.split('-')[0]}"
+modid = modid.toLowerCase()
 group= "alpvax.mod.$modid" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "${project.projectDir.name}-${project.minecraft.version.split('-'')[0]}"
 
 dependencies {
     // you may put jars on which you depend on in ./libs
