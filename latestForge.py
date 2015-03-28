@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import urllib2, re, HTMLParser, os
+import urllib2, re, HTMLParser, os, sys
       
 class ForgeParser(HTMLParser.HTMLParser):
     def __init__(self):
@@ -82,11 +82,26 @@ if __name__=="__main__":
     p.close()
     url = p.data["Links"]["Src"]
     fname = url.split("/")[-1]
+    print(fname)
+    if len(sys.argv) > 1:
+        path = " ".join(sys.argv[1:])
+        parr = os.path.split(path)
+        if parr[1]:
+            print(parr[1])
+            if len(parr[1].split(".")) < 2:
+                fname = parr[1] + "." + fname.split(".")[-1]
+            else:
+                fname = parr[1]
+        if parr[0]:
+            fname = os.path.join(parr[0], fname)
+            if not os.path.exists(parr[0]):
+                os.makedirs(parr[0])
+    print(fname)
     if os.path.exists(fname):
         print("Latest Forge developer version \"%s\" detected, not downloading new copy" % p.data["ForgeVer"])
     else:
         print("Downloading Forge developer version \"%s\" as file: \"%s\"" % (p.data["ForgeVer"], fname))
-        zip = urllib2.urlopen(url)
+        zipf = urllib2.urlopen(url)
         output = open(fname,'wb')
-        output.write(zip.read())
+        output.write(zipf.read())
         output.close()
