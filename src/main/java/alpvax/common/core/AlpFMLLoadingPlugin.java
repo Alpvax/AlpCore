@@ -1,19 +1,12 @@
 package alpvax.common.core;
 
 import java.io.File;
-import java.util.HashMap;
 import java.util.Map;
 
-import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
+import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 
 public class AlpFMLLoadingPlugin implements IFMLLoadingPlugin
 {
-	@Override
-	public String[] getLibraryRequestClass()
-	{
-		return null;
-	}
-
 	@Override
 	public String[] getASMTransformerClass()
 	{
@@ -23,7 +16,7 @@ public class AlpFMLLoadingPlugin implements IFMLLoadingPlugin
 	@Override
 	public String getModContainerClass()
 	{
-		return AlpMod.class.getName();
+		return AlpCore.class.getName();
 	}
 
 	@Override
@@ -36,5 +29,15 @@ public class AlpFMLLoadingPlugin implements IFMLLoadingPlugin
 	public void injectData(Map<String, Object> data)
 	{
 		AlpCore.location = (File)data.get("coremodLocation");
+	}
+
+	/* (non-Javadoc)
+	 * @see net.minecraftforge.fml.relauncher.IFMLLoadingPlugin#getAccessTransformerClass()
+	 */
+	@Override
+	public String getAccessTransformerClass()
+	{
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

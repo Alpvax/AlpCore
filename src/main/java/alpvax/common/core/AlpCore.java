@@ -1,19 +1,13 @@
 package alpvax.common.core;
 
+import java.io.File;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
+import net.minecraftforge.fml.common.DummyModContainer;
+import net.minecraftforge.fml.common.ModMetadata;
 import alpvax.common.mods.ModData;
-
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
-import com.google.common.eventbus.EventBus;
-import com.google.common.eventbus.Subscribe;
-
-import cpw.mods.fml.common.DummyModContainer;
-import cpw.mods.fml.common.LoadController;
-import cpw.mods.fml.common.ModMetadata;
 //import cpw.mods.fml.common.event.FMLInitializationEvent;
 
 public class AlpCore extends DummyModContainer
@@ -21,7 +15,7 @@ public class AlpCore extends DummyModContainer
 	public static File location;
 	public static Map<String, String> classTransformMap = new HashMap<String, String>();
 	
-	public EnchantColoursMod()
+	public AlpCore()
 	{
 		super(new ModMetadata());
 		ModMetadata meta = getMetadata();
