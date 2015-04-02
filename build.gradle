@@ -39,6 +39,9 @@ if(!project.hasProperty("version")) {
 if(!project.hasProperty("modid")) {
     modid = project.projectDir.name
 }
+if(!project.hasProperty("name")) {
+    name = project.projectDir.name
+}
 archivesBaseName = "${modid}-${project.minecraft.version.split('-')[0]}"
 modid = modid.toLowerCase()
 group= "alpvax.mod.$modid" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
@@ -70,7 +73,7 @@ processResources
         include 'mcmod.info'
                 
         // replace version and mcversion
-        expand 'modid':project.modid, 'version':project.version, 'mcversion':project.minecraft.version
+        expand 'modid':project.modid, 'version':project.version, 'mcversion':project.minecraft.version, 'name':project.name
     }
         
     // copy everything else, thats not the mcmod.info
