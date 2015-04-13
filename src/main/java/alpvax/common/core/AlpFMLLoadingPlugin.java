@@ -10,7 +10,7 @@ public class AlpFMLLoadingPlugin implements IFMLLoadingPlugin
 	@Override
 	public String[] getASMTransformerClass()
 	{
-		return new String[]{ECClassTransformer.class.getName()};
+		return new String[]{AlpClassTransformer.class.getName()};
 	}
 
 	@Override
