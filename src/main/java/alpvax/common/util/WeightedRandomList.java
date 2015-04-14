@@ -9,12 +9,12 @@ public class WeightedRandomList<T>
 {
 	private int totalWeight = 0;
 	public List<WeightEntry> list = new ArrayList<WeightEntry>();
-	
+
 	public void addWeightedItem(int weight, T object)
 	{
 		list.add(new WeightEntry(totalWeight, totalWeight += weight, object));
 	}
-	
+
 	public T getRandomObject(Random rand)
 	{
 		if(!list.isEmpty())
@@ -32,25 +32,25 @@ public class WeightedRandomList<T>
 		}
 		return null;
 	}
-	
+
 	private class WeightEntry
 	{
 		private int min;
 		private int max;
 		private T obj;
-		
+
 		public WeightEntry(int min, int max, T object)
 		{
 			this.min = min;
 			this.max = max;
 			this.obj = object;
 		}
-		
+
 		public boolean inRange(int i)
 		{
 			return i >= min && i < max;
 		}
-		
+
 		public T getObject()
 		{
 			return obj;

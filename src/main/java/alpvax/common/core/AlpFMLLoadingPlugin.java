@@ -31,7 +31,9 @@ public class AlpFMLLoadingPlugin implements IFMLLoadingPlugin
 		AlpCore.location = (File)data.get("coremodLocation");
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 *
 	 * @see net.minecraftforge.fml.relauncher.IFMLLoadingPlugin#getAccessTransformerClass()
 	 */
 	@Override
