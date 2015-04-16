@@ -39,6 +39,6 @@ public class AlpPacketManager extends SimpleNetworkWrapper
 	public <REQ extends IMessage, REPLY extends IMessage> void register2WayMessage(Class<? extends IMessageHandler<REQ, REPLY>> clientHandlerClass, Class<? extends IMessageHandler<REQ, REPLY>> serverHandlerClass, Class<REQ> messageClass)
 	{
 		registerMessage(clientHandlerClass, messageClass, Side.CLIENT);
-		registerMessage(serverHandlerClass, messageClass, Side.SERVER);
+		registerMessage(serverHandlerClass, messageClass, nextID, Side.SERVER);//Do not increment ID
 	}
 }
