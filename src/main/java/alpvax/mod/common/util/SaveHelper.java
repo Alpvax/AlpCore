@@ -73,4 +73,10 @@ public class SaveHelper
 		}
 		return res;
 	}
+	
+	public static Configuration getCurrentConfig(String subDir, String configName)
+	{
+		Configuration[] configs = SaveHelper.getConfigs(subDir, configName);
+		return configs[1] != null ? configs[1] : configs[0];
+	}
 }
