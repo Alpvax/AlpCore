@@ -6,11 +6,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.minecraftforge.fml.common.DummyModContainer;
+import net.minecraftforge.fml.common.LoadController;
 import net.minecraftforge.fml.common.ModMetadata;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import alpvax.mod.common.mods.ModData;
 import alpvax.mod.common.util.GlobalConstants;
 
+import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 
 
@@ -35,10 +37,14 @@ public class AlpCore extends DummyModContainer
 		// meta.updateUrl = "";
 		// meta.screenshots = new String[0];
 		// meta.logoFile = "";
-	}/*
-		*
-		* @Override public boolean registerBus(EventBus bus, LoadController controller) { bus.register(this); return true; }
-		*/
+	}
+	
+	@Override
+	public boolean registerBus(EventBus bus, LoadController controller)
+	{
+		bus.register(this);
+		return true;
+	}
 
 	@Subscribe
 	public void preInit(FMLPreInitializationEvent e)

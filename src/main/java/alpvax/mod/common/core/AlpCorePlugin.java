@@ -5,7 +5,7 @@ import java.util.Map;
 
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 
-public class AlpFMLLoadingPlugin implements IFMLLoadingPlugin
+public class AlpCorePlugin implements IFMLLoadingPlugin
 {
 	@Override
 	public String[] getASMTransformerClass()

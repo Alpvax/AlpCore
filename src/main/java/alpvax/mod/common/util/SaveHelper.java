@@ -3,6 +3,7 @@ package alpvax.mod.common.util;
 import java.io.File;
 
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.storage.ISaveFormat;
 import net.minecraft.world.storage.SaveHandler;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.config.Configuration;
@@ -21,10 +22,11 @@ public class SaveHelper
 		{
 			return (SaveHandler)DimensionManager.getWorld(0).getSaveHandler();
 		}
-		else if(MinecraftServer.getServer() != null)
+		MinecraftServer srv = MinecraftServer.getServer();
+		if(srv != null)
 		{
-			MinecraftServer srv = MinecraftServer.getServer();
-			return (SaveHandler)srv.getActiveAnvilConverter().getSaveLoader(srv.getFolderName(), false);
+			ISaveFormat s = srv.getActiveAnvilConverter();
+			return s != null ? (SaveHandler)s.getSaveLoader(srv.getFolderName(), false) : null;
 		}
 		return null;
 	}
