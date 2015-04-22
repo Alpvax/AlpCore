@@ -1,4 +1,4 @@
-package alpvax.mod.common.core;
+package alpvax.common.core;
 
 import java.io.File;
 import java.util.Arrays;
@@ -9,8 +9,8 @@ import net.minecraftforge.fml.common.DummyModContainer;
 import net.minecraftforge.fml.common.LoadController;
 import net.minecraftforge.fml.common.ModMetadata;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import alpvax.mod.common.mods.ModData;
-import alpvax.mod.common.util.GlobalConstants;
+import alpvax.common.mods.ModData;
+import alpvax.common.util.GlobalConstants;
 
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;

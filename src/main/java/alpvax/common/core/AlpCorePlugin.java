@@ -1,4 +1,4 @@
-package alpvax.mod.common.core;
+package alpvax.common.core;
 
 import java.io.File;
 import java.util.Map;

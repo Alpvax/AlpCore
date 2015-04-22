@@ -1,4 +1,4 @@
-package alpvax.mod.common.network;
+package alpvax.common.network;
 
 /**
  * @author Alpvax

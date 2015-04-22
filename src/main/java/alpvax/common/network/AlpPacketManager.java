@@ -1,4 +1,4 @@
-package alpvax.mod.common.network;
+package alpvax.common.network;
 
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;

@@ -1,4 +1,4 @@
-package alpvax.mod.common.util;
+package alpvax.common.util;
 
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.ModContainer;

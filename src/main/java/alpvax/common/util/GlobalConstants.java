@@ -1,4 +1,4 @@
-package alpvax.mod.common.util;
+package alpvax.common.util;
 
 import java.io.File;
 

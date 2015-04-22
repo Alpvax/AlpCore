@@ -1,4 +1,4 @@
-package alpvax.mod.common.util;
+package alpvax.common.util;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;

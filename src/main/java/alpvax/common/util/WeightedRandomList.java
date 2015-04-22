@@ -1,4 +1,4 @@
-package alpvax.mod.common.util;
+package alpvax.common.util;
 
 import java.util.ArrayList;
 import java.util.Iterator;

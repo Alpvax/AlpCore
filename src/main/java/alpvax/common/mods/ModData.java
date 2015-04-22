@@ -1,4 +1,4 @@
-package alpvax.mod.common.mods;
+package alpvax.common.mods;
 
 public final class ModData
 {

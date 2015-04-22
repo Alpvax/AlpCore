@@ -1,4 +1,4 @@
-package alpvax.mod.common.network;
+package alpvax.common.network;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import alpvax.mod.common.util.ModHelper;
+import alpvax.common.util.ModHelper;
 
 public class OpenGuiPacket implements IMessage
 {
