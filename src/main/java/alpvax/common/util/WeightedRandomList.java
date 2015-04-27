@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
+
 public class WeightedRandomList<T>
 {
 	private int totalWeight = 0;

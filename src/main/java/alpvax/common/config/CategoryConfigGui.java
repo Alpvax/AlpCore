@@ -7,6 +7,7 @@ import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.fml.client.config.GuiConfig;
 import net.minecraftforge.fml.client.config.IConfigElement;
 
+
 /** This GuiConfig object specifies the configID of the object and as such will force-save when it is closed. The parent GuiConfig object's entryList will also be refreshed to reflect the changes. */
 public class CategoryConfigGui extends GuiConfig
 {
@@ -14,7 +15,7 @@ public class CategoryConfigGui extends GuiConfig
 	{
 		this(parentScreen, category, configElement, title, "");
 	}
-	
+
 	public CategoryConfigGui(GuiConfig parentScreen, ConfigCategory category, List<IConfigElement> configElements, IConfigElement configElement, String title)
 	{
 		this(parentScreen, category, configElements, configElement, title, "");

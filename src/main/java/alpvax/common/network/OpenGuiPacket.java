@@ -9,6 +9,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import alpvax.common.util.ModHelper;
 
+
 public class OpenGuiPacket implements IMessage
 {
 	private String modID;
@@ -17,6 +18,7 @@ public class OpenGuiPacket implements IMessage
 	public OpenGuiPacket()
 	{
 	}
+
 	public OpenGuiPacket(String modID, int guiID)
 	{
 		this.modID = modID;
@@ -46,7 +48,7 @@ public class OpenGuiPacket implements IMessage
 			return null;
 		}
 	}
-	
+
 	private static class OpenGuiScheduledTask implements Runnable
 	{
 		private OpenGuiPacket message;

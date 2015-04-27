@@ -38,7 +38,7 @@ public class AlpCore extends DummyModContainer
 		// meta.screenshots = new String[0];
 		// meta.logoFile = "";
 	}
-	
+
 	@Override
 	public boolean registerBus(EventBus bus, LoadController controller)
 	{

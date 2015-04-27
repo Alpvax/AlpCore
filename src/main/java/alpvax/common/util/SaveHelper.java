@@ -8,6 +8,7 @@ import net.minecraft.world.storage.SaveHandler;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.config.Configuration;
 
+
 public class SaveHelper
 {
 	public static String getWorldName()
@@ -30,12 +31,12 @@ public class SaveHelper
 		}
 		return null;
 	}
-	
+
 	public static File getCurrentConfigDir()
 	{
 		return getCurrentConfigDir("");
 	}
-	
+
 	public static File getCurrentConfigDir(String subDir)
 	{
 		SaveHandler s = getWorldSaveHandler();
@@ -55,7 +56,7 @@ public class SaveHelper
 		f.mkdirs();
 		return f;
 	}
-	
+
 	/**
 	 * @param subDir Optional subpath to look in
 	 * @param configName
@@ -75,7 +76,7 @@ public class SaveHelper
 		}
 		return res;
 	}
-	
+
 	public static Configuration getCurrentConfig(String subDir, String configName)
 	{
 		Configuration[] configs = SaveHelper.getConfigs(subDir, configName);

@@ -22,7 +22,7 @@ public class AlpPacketManager extends SimpleNetworkWrapper
 	/**
 	 * Registers a message and message handler
 	 */
-	public <REQ extends IMessage, REPLY extends IMessage> void registerMessage(Class<? extends IMessageHandler<REQ, REPLY>> handlerClass, Class<REQ> messageClass, Side side)
+	public <REQ extends IMessage, REPLY extends IMessage>void registerMessage(Class<? extends IMessageHandler<REQ, REPLY>> handlerClass, Class<REQ> messageClass, Side side)
 	{
 		if(nextID++ > 255)
 		{
@@ -33,10 +33,10 @@ public class AlpPacketManager extends SimpleNetworkWrapper
 
 	/**
 	 * Registers a message and message handler on both sides
-	 * @param handlerClass Must extend {@link AbstractBiMessageHandler} 
+	 * @param handlerClass Must extend {@link AbstractBiMessageHandler}
 	 * @param messageClass must implement {@link IMessage}
 	 */
-	public <REQ extends IMessage, REPLY extends IMessage> void register2WayMessage(Class<? extends IMessageHandler<REQ, REPLY>> clientHandlerClass, Class<? extends IMessageHandler<REQ, REPLY>> serverHandlerClass, Class<REQ> messageClass)
+	public <REQ extends IMessage, REPLY extends IMessage>void register2WayMessage(Class<? extends IMessageHandler<REQ, REPLY>> clientHandlerClass, Class<? extends IMessageHandler<REQ, REPLY>> serverHandlerClass, Class<REQ> messageClass)
 	{
 		registerMessage(clientHandlerClass, messageClass, Side.CLIENT);
 		registerMessage(serverHandlerClass, messageClass, nextID, Side.SERVER);//Do not increment ID

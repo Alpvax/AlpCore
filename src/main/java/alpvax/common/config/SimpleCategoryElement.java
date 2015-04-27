@@ -7,6 +7,7 @@ import net.minecraftforge.fml.client.config.DummyConfigElement.DummyCategoryElem
 import net.minecraftforge.fml.client.config.GuiConfigEntries.IConfigEntry;
 import net.minecraftforge.fml.client.config.IConfigElement;
 
+
 public class SimpleCategoryElement extends DummyCategoryElement
 {
 	public SimpleCategoryElement(ConfigCategory category, List<IConfigElement> childElements)

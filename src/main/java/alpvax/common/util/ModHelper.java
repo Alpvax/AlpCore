@@ -3,6 +3,7 @@ package alpvax.common.util;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.ModContainer;
 
+
 public class ModHelper
 {
 	public static Object getMod(String modID)

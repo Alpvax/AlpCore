@@ -29,7 +29,7 @@ public class EntityHelper
 	{
 		return player.getDisplayNameString();
 	}
-	
+
 	/**
 	 * @param overrideType 0 = override with new modifier, 1 = add values, 2 = multiply values
 	 */

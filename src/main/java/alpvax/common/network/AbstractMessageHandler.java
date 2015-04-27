@@ -9,6 +9,6 @@ public interface AbstractMessageHandler
 
 	public static interface Abstract2WayMessageHandler
 	{
-		
+
 	}
 }
