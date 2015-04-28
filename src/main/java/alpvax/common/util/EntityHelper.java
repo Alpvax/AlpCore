@@ -19,7 +19,7 @@ public class EntityHelper
 		{
 			if(((Entity)o).getEntityId() == entityID)
 			{
-				return ((Entity)o);
+				return (Entity)o;
 			}
 		}
 		return null;
@@ -86,5 +86,12 @@ public class EntityHelper
 				throw new InvalidParameterException("overrideType must be 0, 1 or 2! Recieved " + overrideType);
 		}
 		att.applyModifier(mod);
+	}
+
+	//TODO:getClosest(EntitySelector)public 
+
+	public abstract static class EntitySelector
+	{
+		public abstract boolean isEntityValid(Entity e);
 	}
 }
