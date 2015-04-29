@@ -1,6 +1,8 @@
 package alpvax.common.util;
 
 import java.security.InvalidParameterException;
+import java.util.Iterator;
+import java.util.List;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -8,7 +10,12 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.IAttribute;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+
+import com.google.common.base.Predicate;
 
 
 public class EntityHelper
@@ -88,10 +95,120 @@ public class EntityHelper
 		att.applyModifier(mod);
 	}
 
-	//TODO:getClosest(EntitySelector)public 
-
-	public abstract static class EntitySelector
+	public static MovingObjectPosition getLookingAt(EntityLivingBase lookingEntity, double maxDistance, Predicate<Entity> filter)
 	{
-		public abstract boolean isEntityValid(Entity e);
+		if(filter == null)
+		{
+			filter = EntitySelector.ALL;
+		}
+		Vec3 start = new Vec3(lookingEntity.posX, lookingEntity.posY + lookingEntity.getEyeHeight(), lookingEntity.posZ);
+		Vec3 look = lookingEntity.getLookVec();
+		Vec3 end = start.addVector(look.xCoord * maxDistance, look.yCoord * maxDistance, look.zCoord * maxDistance);
+		MovingObjectPosition mop = lookingEntity.worldObj.rayTraceBlocks(start, end);
+		if(mop != null)
+		{
+			end = new Vec3(mop.hitVec.xCoord, mop.hitVec.yCoord, mop.hitVec.zCoord);
+		}
+		if(!lookingEntity.worldObj.isRemote)
+		{
+			Entity entity = null;
+			@SuppressWarnings("unchecked")
+			List<Entity> list = lookingEntity.worldObj.getEntitiesWithinAABBExcludingEntity(lookingEntity, new AxisAlignedBB(start.xCoord, start.yCoord, start.zCoord, end.xCoord, end.yCoord, end.zCoord));
+			double d0 = Double.MAX_VALUE;
+			for(int j = 0; j < list.size(); ++j)
+			{
+				Entity entity1 = list.get(j);
+
+				if(filter.apply(entity1))
+				{
+					float f = 0.3F;
+					AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().expand(f, f, f);
+					MovingObjectPosition movingobjectposition1 = axisalignedbb.calculateIntercept(start, end);
+
+					if(movingobjectposition1 != null)
+					{
+						double d1 = start.distanceTo(movingobjectposition1.hitVec);
+
+						if(d1 < d0)
+						{
+							entity = entity1;
+							d0 = d1;
+						}
+					}
+				}
+			}
+			if(entity != null)
+			{
+				mop = new MovingObjectPosition(entity);
+			}
+		}
+		return mop;
+	}
+
+	public static Entity getClosestEntity(World world, MovingObjectPosition mop, double searchRadius, Predicate<Entity> filter)
+	{
+		switch(mop.typeOfHit)
+		{
+			case BLOCK:
+				if(searchRadius == 0D)
+				{
+					return null;
+				}
+				double x = mop.hitVec.xCoord;
+				double y = mop.hitVec.yCoord;
+				double z = mop.hitVec.zCoord;
+				@SuppressWarnings("unchecked")
+				Iterator<Entity> i = world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(x - searchRadius, y - searchRadius, z - searchRadius, x + searchRadius, y + searchRadius, z + searchRadius), filter).iterator();
+				Entity entity = null;
+				double d = Double.MAX_VALUE;
+				while(i.hasNext())
+				{
+					Entity e = i.next();
+					double d1 = e.getDistanceSq(x, y, z);
+					if(d1 < d)
+					{
+						d = d1;
+						entity = e;
+					}
+				}
+				return entity;
+			case ENTITY:
+				return mop.entityHit;
+			default:
+				return null;
+		}
+	}
+
+	public static abstract class EntitySelector implements Predicate<Entity>
+	{
+		public static final EntitySelector ALL = new EntitySelector(){
+			@Override
+			protected boolean isEntityValid(Entity e)
+			{
+				return true;
+			}
+		};
+		public static final EntitySelector PLAYER = new EntitySelector(){
+			@Override
+			protected boolean isEntityValid(Entity e)
+			{
+				return e instanceof EntityPlayer;
+			}
+		};
+		public static final EntitySelector NOT_PLAYER = new EntitySelector(){
+			@Override
+			protected boolean isEntityValid(Entity e)
+			{
+				return !(e instanceof EntityPlayer);
+			}
+		};
+
+		protected abstract boolean isEntityValid(Entity e);
+
+		@Override
+		public boolean apply(Entity input)
+		{
+			return isEntityValid(input);
+		}
 	}
 }
