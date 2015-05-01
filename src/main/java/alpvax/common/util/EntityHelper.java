@@ -42,6 +42,10 @@ public class EntityHelper
 	 */
 	public static void applyAttributeModifier(EntityLivingBase entity, IAttribute attribute, AttributeModifier modifier, int overrideType)
 	{
+		if(entity.worldObj.isRemote)
+		{
+			return;
+		}
 		IAttributeInstance att = entity.getAttributeMap().getAttributeInstance(attribute);
 		AttributeModifier mod = att.getModifier(modifier.getID());
 		if(mod != null)
