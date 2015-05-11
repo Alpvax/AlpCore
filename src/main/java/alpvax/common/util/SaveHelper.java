@@ -136,35 +136,36 @@ public class SaveHelper
 
 	private static Property getProperty(String subDir, String configName, String category, String key, String[] defaultValues, String comment, Property.Type type, boolean isList)
 	{
+		if(key == null || key.equals(""))
+		{
+			throw new NullPointerException("Config key cannot be null");
+		}
 		SaveHandler s = getWorldSaveHandler();
 		Configuration conf = null;
 		if(s != null)
 		{
 			conf = new Configuration(new File(s.getWorldDirectory() + "/config/" + subDir, configName));
-			conf.load();
 		}
 		if(conf == null || !conf.hasKey(category, key))
 		{
 			Configuration def = new Configuration(new File(GlobalConstants.DEF_CONFIG_DIR + "/" + subDir, configName));
-			def.load();
 			if(defaultValues == null && !def.hasKey(category, key))
 			{
 				return null;
 			}
-			Property p = isList ? def.get(category, key, defaultValues, comment, type) : def.get(category, key, defaultValues[0], comment, type);
-			def.save();
+			Property p = getPropertyAndSave(def, category, key, defaultValues, defaultValues[0], comment, type, isList);
 			if(conf != null)
 			{
-				return isList ? conf.get(category, key, p.getStringList(), comment, type) : conf.get(category, key, p.getString(), comment, type);
+				return getPropertyAndSave(conf, category, key, p.getStringList(), p.getString(), comment, type, isList);
 			}
 			return p;
 		}
-		return getPropertyAndSave(conf, category, key, defaultValues, comment, type, isList);
+		return getPropertyAndSave(conf, category, key, defaultValues, defaultValues[0], comment, type, isList);
 	}
 
-	private static Property getPropertyAndSave(Configuration config, String category, String key, String[] defaultValues, String comment, Property.Type type, boolean isList)
+	private static Property getPropertyAndSave(Configuration config, String category, String key, String[] defaultValues, String defaultValue, String comment, Property.Type type, boolean isList)
 	{
-		Property p = isList ? config.get(category, key, defaultValues, comment, type) : config.get(category, key, defaultValues[0], comment, type);
+		Property p = isList ? config.get(category, key, defaultValues, comment, type) : config.get(category, key, defaultValue, comment, type);
 		config.save();
 		return p;
 	}
