@@ -1,6 +1,5 @@
 package alpvax.common.core;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +19,7 @@ import com.google.common.eventbus.Subscribe;
 
 public class AlpCore extends DummyModContainer
 {
-	public static File location;
+	//public static File location;
 	public static Map<String, String> classTransformMap = new HashMap<String, String>();
 
 	public AlpCore()

@@ -1,6 +1,5 @@
 package alpvax.common.core;
 
-import java.io.File;
 import java.util.Map;
 
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
@@ -29,7 +28,7 @@ public class AlpCorePlugin implements IFMLLoadingPlugin
 	@Override
 	public void injectData(Map<String, Object> data)
 	{
-		AlpCore.location = (File)data.get("coremodLocation");
+		//AlpCore.location = (File)data.get("coremodLocation");
 	}
 
 	/*
@@ -40,7 +39,6 @@ public class AlpCorePlugin implements IFMLLoadingPlugin
 	@Override
 	public String getAccessTransformerClass()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return AlpAccessTransformer.class.getName();
 	}
 }

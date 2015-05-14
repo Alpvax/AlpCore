@@ -42,7 +42,7 @@ public class EntityHelper
 	 */
 	public static void applyAttributeModifier(EntityLivingBase entity, IAttribute attribute, AttributeModifier modifier, int overrideType)
 	{
-		if(entity.worldObj.isRemote)
+		if(entity.worldObj.isRemote || modifier == null || modifier.getAmount() == 0D)
 		{
 			return;
 		}
@@ -61,7 +61,12 @@ public class EntityHelper
 			switch(overrideType)
 			{
 				case 1:
-					mod = new AttributeModifier(modifier.getID(), modifier.getName(), mod.getAmount() + modifier.getAmount(), modifier.getOperation());
+					double amount = mod.getAmount() + modifier.getAmount();
+					if(amount == 0)
+					{
+						return;
+					}
+					mod = new AttributeModifier(modifier.getID(), modifier.getName(), amount, modifier.getOperation());
 					break;
 				case 2:
 					mod = new AttributeModifier(modifier.getID(), modifier.getName(), mod.getAmount() * modifier.getAmount(), modifier.getOperation());
@@ -78,9 +83,16 @@ public class EntityHelper
 	 */
 	public static void removeAttributeModifier(EntityLivingBase entity, IAttribute attribute, AttributeModifier modifier, int overrideType)
 	{
+		if(entity.worldObj.isRemote || modifier == null || modifier.getAmount() == 0D)
+		{
+			return;
+		}
 		IAttributeInstance att = entity.getAttributeMap().getAttributeInstance(attribute);
 		AttributeModifier mod = att.getModifier(modifier.getID());
-		att.removeModifier(mod);
+		if(mod != null)
+		{
+			att.removeModifier(mod);
+		}
 		if(mod == null || overrideType == 0)
 		{
 			return;
@@ -88,7 +100,12 @@ public class EntityHelper
 		switch(overrideType)
 		{
 			case 1:
-				mod = new AttributeModifier(modifier.getID(), modifier.getName(), mod.getAmount() - modifier.getAmount(), modifier.getOperation());
+				double amount = mod.getAmount() - modifier.getAmount();
+				if(amount == 0)
+				{
+					return;
+				}
+				mod = new AttributeModifier(modifier.getID(), modifier.getName(), amount, modifier.getOperation());
 				break;
 			case 2:
 				mod = new AttributeModifier(modifier.getID(), modifier.getName(), mod.getAmount() / modifier.getAmount(), modifier.getOperation());
