@@ -39,6 +39,6 @@ public class AlpCorePlugin implements IFMLLoadingPlugin
 	@Override
 	public String getAccessTransformerClass()
 	{
-		return AlpAccessTransformer.class.getName();
+		return null;
 	}
 }
