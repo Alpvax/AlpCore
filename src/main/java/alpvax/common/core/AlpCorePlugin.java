@@ -3,8 +3,10 @@ package alpvax.common.core;
 import java.util.Map;
 
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
+import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin.TransformerExclusions;
 
 
+@TransformerExclusions("alpvax")
 public class AlpCorePlugin implements IFMLLoadingPlugin
 {
 	@Override
