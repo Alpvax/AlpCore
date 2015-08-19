@@ -87,3 +87,5 @@ jar {
 		attributes 'FMLCorePlugin': "alpvax.${project.modid}.core.${project.modid}Plugin"
     }
 }
+
+eclipse.pathVariables 'USER_HOME': file(System.getenv('HOME'))
