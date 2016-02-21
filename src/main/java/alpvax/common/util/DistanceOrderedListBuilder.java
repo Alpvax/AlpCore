@@ -57,7 +57,6 @@ public class DistanceOrderedListBuilder<T extends Entity>
 	
 	public List<T> build()
 	{
-		@SuppressWarnings("unchecked")
 		List<T> list = worldObj.getEntitiesWithinAABB(typeClass, new AxisAlignedBB(oX - r, oY - r, oZ - r, oX + r, oY + r, oZ + r), p);
 		list.sort(new Comparator<T>() {
 			@Override

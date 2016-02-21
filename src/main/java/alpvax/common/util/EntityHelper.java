@@ -133,7 +133,6 @@ public class EntityHelper
 		if(!lookingEntity.worldObj.isRemote)
 		{
 			Entity entity = null;
-			@SuppressWarnings("unchecked")
 			List<Entity> list = lookingEntity.worldObj.getEntitiesWithinAABBExcludingEntity(lookingEntity, new AxisAlignedBB(start.xCoord, start.yCoord, start.zCoord, end.xCoord, end.yCoord, end.zCoord));
 			double d0 = Double.MAX_VALUE;
 			for(int j = 0; j < list.size(); ++j)
@@ -178,7 +177,6 @@ public class EntityHelper
 				double x = mop.hitVec.xCoord;
 				double y = mop.hitVec.yCoord;
 				double z = mop.hitVec.zCoord;
-				@SuppressWarnings("unchecked")
 				Iterator<Entity> i = world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(x - searchRadius, y - searchRadius, z - searchRadius, x + searchRadius, y + searchRadius, z + searchRadius), filter).iterator();
 				Entity entity = null;
 				double d = Double.MAX_VALUE;
